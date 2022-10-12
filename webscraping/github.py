@@ -13,7 +13,13 @@ print(soup.prettify())
 
 
 # get the text from each repo
-soup.find_all('p',class_='col-9 color-fg-muted my-1 pr-4')
+descriptions = soup.find_all('p',class_='col-9 color-fg-muted my-1 pr-4')
+
+output_descriptions = []
+for i in descriptions:
+    output_descriptions.append(i.text)
+    
+len(output_descriptions)
 
 # get the programming language from each repo
 p_langauge = soup.find_all('span',attrs={'itemprop': 'programmingLanguage'})
@@ -53,6 +59,9 @@ for item in repo_name:
     repo_names.append(name)
 len(repo_names)
 
+for i in repo_names:
+    print(i)
+
 # get the description of the repo and print it
 repo_desc = soup.find_all('p',class_='col-9 color-fg-muted my-1 pr-4')
 repo_descs = []
@@ -70,3 +79,4 @@ len(repo_descs)
 ## put this together into a dataframe
 df = pd.DataFrame({'repo_name':repo_names,'repo_desc':repo_descs})
 
+df.to_csv('')
